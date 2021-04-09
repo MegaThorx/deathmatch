@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>React App</title>
+  </head>
+  <body>
+	<noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+	<script>
+		if(typeof Events === 'undefined') {
+			Events = {
+				_events: [],
+				Subscribe: function(event, func) {
+					console.log('Registering event handler for ' + event);
+					Events._events.push({event: event, func: func});
+				},
+				call: function() {
+					let args = [...arguments];
+					let event = args[0];
+					args.splice(0, 1);
+
+					for (let index = 0; index < Events._events.length; index++) {
+						const handler = Events._events[index];
+						if (handler.event === event) {
+							handler.func.apply(this, args);
+						}
+					}
+				}
+			}
+		}
+
+		EventsWrapper = {
+			_events: {},
+			Subscribe: function(event, func) {
+				if (typeof EventsWrapper._events[event] === "undefined") {
+					Events.Subscribe(event, EventsWrapper.handle.bind(this, event));
+				}
+
+				EventsWrapper._events[event] = func;
+			},
+			handle: function() {
+				let args = [...arguments];
+				let event = args[0];
+				args.splice(0, 1);
+
+				if (EventsWrapper._events[event]) {
+					EventsWrapper._events[event].apply(this, args);
+				}
+			}
+		}
+	</script>
+</body>
+</html>

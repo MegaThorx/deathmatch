@@ -1,0 +1,25 @@
+.SnowballFightScore {
+	background-color: rgba(0, 0, 0, 0.5);
+	font-size: 1.1rem;
+	text-align: left;
+	padding: 10px;
+    width: 14rem;
+}
+
+.SnowballFightScore .active {
+	color: rgb(231, 57, 57) !important;
+}
+
+.SnowballFightScore .hearts {
+	font-size: 0.9rem;
+}
+
+.SnowballFightScore .heart {
+	color: rgba(0, 0, 0, 0.3);
+	margin-left: 2px;
+}
+
+.SnowballFightScore p {
+	padding: 0;
+	margin: 0;
+}

@@ -1,0 +1,27 @@
+.Scoreboard {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+}
+
+.Scoreboard-inner {
+    position: relative;
+    color: white;
+}
+
+.Scoreboard-hidden {
+    display: none;
+}
+
+.Scoreboard-scores {
+    background-color: rgba(0, 0, 0, 0.3);
+    padding: 1rem;
+}
+
+.Scoreboard-scores th, .Scoreboard-scores td {
+    text-align: left;
+    padding-left: 1.3rem;
+    padding-right: 1.3rem;
+}

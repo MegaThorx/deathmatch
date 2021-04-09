@@ -1,0 +1,20 @@
+.SnowballFight {
+    text-align: center;
+	/* background-color: rgba(0, 0, 0, 0.5); */
+	color: rgba(0, 0, 0, 0.3);
+	font-size: 3rem;
+	text-align: left;
+}
+
+.SnowballFight .active {
+	color: rgb(231, 57, 57);
+}
+
+.SnowballFight .heart {
+	margin-left: 5px;
+}
+
+.SnowballFight p {
+	padding: 0;
+	margin: 0;
+}

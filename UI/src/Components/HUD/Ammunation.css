@@ -1,0 +1,22 @@
+.Ammunation {
+    width: 100%;
+    text-align: center;
+	background-color: rgba(0, 0, 0, 0.5);
+    margin-top: 5px;
+}
+
+.Ammunation-clip {
+    font-size: 2.5rem;
+}
+
+.Ammunation-clipDelimiter {
+    font-size: 2.5rem;
+}
+
+.Ammunation-bag {
+    font-size: 1.5rem;
+}
+
+.Ammunation-content {
+    padding: 5px;
+}

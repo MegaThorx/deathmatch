@@ -1,0 +1,25 @@
+.Scoreboard-MultiColumns-row {
+    display: flex;
+    width: 100%;
+}
+
+.Scoreboard-MultiColumns-col {
+    flex: 1 0 0%;
+}
+
+
+.Scoreboard-MultiColumns-inner {
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 1rem;
+    text-align: left;
+}
+
+.Scoreboard-MultiColumns-team {
+    padding-left: 1.3rem;
+}
+
+.Scoreboard-MultiColumns-inner th, .Scoreboard-MultiColumns-inner td {
+    text-align: left;
+    padding-left: 1.3rem;
+    padding-right: 1.3rem;
+}

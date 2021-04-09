@@ -1,0 +1,63 @@
+.HUD {
+}
+
+.HUD-inner {
+    color: white;
+
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+
+    overflow: hidden;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    padding: 3rem;
+}
+
+.HUD-row {
+    display: flex;
+    flex-direction: row;
+	justify-content: space-between;
+	flex: 1 0 0%;
+}
+
+.HUD-col {
+	flex: 1 0 0%;
+}
+
+.HUD-HealthAmmunation {
+	position: relative;
+	height: 100%;
+	width: 100%;
+}
+
+.HUD-HealthAmmunation-inner {
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	width: 10rem;
+}
+
+.HUD-HealthAmmunation-container {
+	position: absolute;
+	width: 100%;
+	bottom: 0px;
+}
+
+.HUD-GameMode {
+	/* width: 10rem; */
+	position: relative;
+	height: 100%;
+	width: 100%;
+}
+
+.HUD-GameMode-container {
+	position: absolute;
+	width: 100%;
+	bottom: 0px;
+}

@@ -1,0 +1,11 @@
+.TeamDeathmatch {
+    width: 10rem;
+    text-align: center;
+	background-color: rgba(0, 0, 0, 0.5);
+    margin-top: 5px;
+}
+
+.TeamDeathmatch p {
+	padding: 0;
+	margin: 0;
+}
