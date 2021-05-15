@@ -7,6 +7,7 @@ function CommandManager:constructor()
     self.m_OnCommand = bind(self.OnCommand, self)
     Server:Subscribe("Console", self.m_OnConsoleCommand)
     Server:Subscribe("Chat", self.m_OnCommand)
+    Package:Log("CommandManager:constructor")
 end
 
 function CommandManager:destructor()

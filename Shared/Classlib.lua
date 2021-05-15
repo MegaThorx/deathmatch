@@ -276,6 +276,7 @@ function bind(func, ...)
 		end
 end
 
+--[[
 function load(class, ...)
 	assert(type(class) == "table", "first argument provided to load is not a table")
 	local instance = setmetatable( { },
@@ -294,9 +295,8 @@ function load(class, ...)
 
 	return instance
 end
+]]
 
--- Magic to allow MTA elements to be used as data storage
--- e.g. localPlayer.foo = 12
 oop = {}
 oop.elementInfo = setmetatable({}, { __mode = "k" })
 oop.elementParent = setmetatable({}, { __mode = "k" })

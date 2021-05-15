@@ -23,6 +23,7 @@ local files = {
     "Classes/Commands/PaintingsCommand.lua",
 	"Classes/Commands/FixFallingCommand.lua",
 	"Classes/Commands/GamemodeCommand.lua",
+    "Classes/Commands/RunCommand.lua",
 
     "MapDefinition.lua"
 }

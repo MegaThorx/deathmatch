@@ -83,6 +83,7 @@ end
 function BaseMode:StartRound()
 	Package:Log("BaseMode:StartRound")
 	self:SetState(BaseMode.States.Running)
+    self.m_TimeStart = os.time()
 end
 
 function BaseMode:EndRound()

@@ -50,8 +50,17 @@ function CharacterManager:Respawn(player, character)
 end
 
 function CharacterManager:Event_TakeDamage(character, damage, type, bone, fromDirection, instigator)
-	-- Package:Log(inspect({health = character:GetHealth(), damage = damage}))
-	if instigator and character:IsAlive() then
+    Package:Log(inspect({
+        character = character,
+        damage = damage,
+        type = type,
+        bone = bone,
+        fromDirection = fromDirection,
+        instigator = instigator
+    }))
+    local player = character:GetPlayer()
+    
+	if player ~= nil and instigator and instigator ~= player and character:IsAlive() then
 		Events:CallRemote("HUD_AddScoreFeedEntry", instigator, {"Enemy hit", damage, true})
 		instigator:SetPublicData("Score", instigator:GetPublicData("Score") + damage)
 	end

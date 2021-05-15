@@ -15,6 +15,7 @@ end
 function Core:InitializeCommands()
     ListPlayersCommand:New()
     ListRoundPlayerCommand:New()
+    RunCommand:New()
 end
 
 function Core:CheckIfReady()

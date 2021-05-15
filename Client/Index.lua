@@ -15,7 +15,8 @@ local files = {
     "Classes/CommandManager.lua",
 
     "Classes/Commands/ListPlayersCommand.lua",
-    "Classes/Commands/ListRoundPlayerCommand.lua"
+    "Classes/Commands/ListRoundPlayerCommand.lua",
+    "Classes/Commands/RunCommand.lua"
 }
 
 for _, file in ipairs(files) do

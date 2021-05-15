@@ -20,6 +20,7 @@ function Core:InitializeCommands()
     PaintingsCommand:New()
 	FixFallingCommand:New()
 	GamemodeCommand:New()
+    RunCommand:New()
 end
 
 function Core:destructor()

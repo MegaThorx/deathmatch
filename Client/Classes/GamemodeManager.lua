@@ -81,6 +81,6 @@ end
 
 function GamemodeManager:RemovePlayer(player)
     if self.m_CurrentMode then
-        -- self.m_CurrentMode:AddPlayer(player)
+        self.m_CurrentMode:RemovePlayer(player)
     end
 end

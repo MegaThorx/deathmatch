@@ -4,13 +4,33 @@ function CommandManager:constructor()
     self.m_Commands = {}
 
     self.m_OnCommand = bind(self.OnCommand, self)
-    Client:Subscribe("Console", self.m_OnCommand)
+    self.m_OnConsole = bind(self.OnConsole, self)
+
+    Client:Subscribe("Chat", self.m_OnCommand)
+    Client:Subscribe("Console", self.m_OnConsole)
 end
 
 function CommandManager:destructor()
 end
 
 function CommandManager:OnCommand(text)
+	if string.sub(text, 1, 1) == "/" then
+		local text = string.sub(text, 2, string.len(text))
+		local args = split(text, " ")
+		if args and args[1] then
+			local command = args[1]
+			table.remove(args, 1)
+
+			for k, v in ipairs(self.m_Commands) do
+				if v.command == command then
+					v.callback(command, table.unpack(args))
+				end
+			end
+		end
+	end
+end
+
+function CommandManager:OnConsole(text)
     local args = split(text, " ")
     if args and args[1] then
         local command = args[1]
@@ -18,7 +38,7 @@ function CommandManager:OnCommand(text)
 
         for k, v in ipairs(self.m_Commands) do
             if v.command == command then
-                v.callback(table.unpack(args))
+                v.callback(command, table.unpack(args))
             end
         end
     end

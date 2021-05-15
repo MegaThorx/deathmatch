@@ -14,6 +14,8 @@ function TeamDeathmatch:virtual_constructor()
     self.m_TimeStart = os.time()
 	self.m_Ending = false
 
+    self.m_SpawnMinDistance = 250
+
     self.m_Respawn = bind(self.Respawn, self)
 
     self.m_Spawns = MapManager:GetSingleton():GetCurrentMap():GetSpawnLocations(self.m_Name)
@@ -53,12 +55,10 @@ function TeamDeathmatch:EndRound()
         Events:CallRemote("GameMode_RoundEnd", player, {})
     end
 
-    --[[
     Timer:SetTimeout(10 * 1000, function()
         GamemodeManager:GetSingleton():NextGame()
         return false
     end, {})
-    ]]
 end
 
 function TeamDeathmatch:CanStart()
@@ -92,6 +92,7 @@ function TeamDeathmatch:GetWeapon()
 end
 
 function TeamDeathmatch:Tick()
+    if self:GetState() ~= BaseMode.States.Running then return end
     self.m_TimeElapsed = os.time() - self.m_TimeStart
 
     if self.m_TimeElapsed >= self:GetTimeLimit() then
@@ -135,6 +136,17 @@ end
 function TeamDeathmatch:RemovePlayer(player)
     Package:Log("RemovePlayer " .. tostring(player))
     table.removevalue(self.m_Players, player)
+    local character = player:GetControlledCharacter()
+    Package:Log("RemovePlayer " .. tostring(character))
+    
+    if character and character:IsValid() then
+        local weapon = character:GetCurrentPickUpObject()
+        Package:Log("RemovePlayer " .. tostring(weapon))
+        if weapon and weapon:IsValid() then
+            weapon:Destroy()
+        end
+        character:Destroy()
+    end
 end
 
 function TeamDeathmatch:Spawn(player)
@@ -142,7 +154,7 @@ function TeamDeathmatch:Spawn(player)
         return
     end
     Package:Log("Spawn " .. tostring(player))
-    local position = self.m_Spawns[math.random(1, #self.m_Spawns)]
+    local position = self:GetSpawnPosition(player)
 	local character = NanosCharacter(position, Rotator(), "NanosWorld::SK_Male")
 	character:SetSpeedMultiplier(1.1)
 	character:AddSkeletalMeshAttached("shirt", "NanosWorld::SK_Shirt")
@@ -164,7 +176,7 @@ function TeamDeathmatch:Respawn(player, character)
         return
     end
     if character and character:IsValid() then
-        local position = self.m_Spawns[math.random(1, #self.m_Spawns)]
+        local position = self:GetSpawnPosition(player)
         character:SetHealth(100)
         character:SetLocation(position)
         local weapon = self:GetWeapon()
@@ -173,6 +185,34 @@ function TeamDeathmatch:Respawn(player, character)
         self:Spawn(player)
     end
     return false
+end
+
+function TeamDeathmatch:GetSpawnPosition(player)
+    local position
+    local minDistance = -1
+    local team = player:GetPublicData("Team")
+
+    for i = 1, 10 do
+        position = self.m_Spawns[math.random(1, #self.m_Spawns)]
+
+        for k, player2 in ipairs(self.m_Players) do
+            local character = player2:GetControlledCharacter()
+            if character and character:GetHealth() > 0 and player2:GetPublicData("Team") ~= team then
+                local distance = position:Distance(character:GetLocation())
+                if distance < minDistance or minDistance == -1 then
+                    minDistance = distance
+                end
+            end
+        end
+
+        if minDistance == -1 or minDistance > self.m_SpawnMinDistance then
+            Package:Log("Found spawnpoint after " .. tostring(i) .. " tries")
+            break
+        end
+    end
+    Package:Log("Got spawnpoint")
+    
+    return position
 end
 
 function TeamDeathmatch:OnPlayerDeath(player, character, instigator, lastDamageTaken, lastBoneDamaged, damageTypeReason, hitFromDirection)

@@ -2,6 +2,12 @@
 [package]
 	# Package Name
 	name =					"deathmatch"
+	# Contributors
+	author =				""
+	# Version
+	version =				"0.0.1"
+	# Image URL
+	image =					""
 	# Package Type: 'executable' (normal package) | 'library' (doesn't run - useful for code library)
 	type =					"executable"
 	# Whether to force the Custom Map Script to do NOT load
@@ -10,5 +16,5 @@
 	auto_cleanup =			true
 	# Asset Packs Requirements
 	assets_requirements = [
-		"Hangar",
+		"hangar",
 	]
