@@ -10,7 +10,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Hello world action step
-        uses: https://github.com/MegaThorx/nanos-marketplace-action
+        uses: MegaThorx/nanos-marketplace-action
         id: hello
         with:
           folder: '.'
