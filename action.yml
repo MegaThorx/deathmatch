@@ -1,0 +1,13 @@
+name: 'Nanos Marketplace Action'
+description: 'Nanos Marketplace Action'
+inputs:
+  folder:
+    description: 'Folder which contains the asset/package'
+    required: false
+    default: ''
+  secret:
+    description: 'API secret'
+    required: true
+runs:
+  using: 'node12'
+  main: 'index.js'
