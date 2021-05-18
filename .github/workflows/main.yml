@@ -13,6 +13,6 @@ jobs:
         uses: megathorx/nanos-marketplace-action@main
         id: hello
         with:
-          folder: '.'
+          folder: ''
           secret: 'asdf_2'
 
