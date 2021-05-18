@@ -14,5 +14,5 @@ jobs:
         id: hello
         with:
           folder: '.'
-          secret: 'asdf_1'
+          secret: 'asdf_2'
 
