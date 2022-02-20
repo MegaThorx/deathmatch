@@ -15,6 +15,6 @@ jobs:
         with:
           folder: ''
           name: 'mega-deathmatch'
-          changelog: 'Hello World'
+          changelog: 'Hello World 2'
           token: ${{ secrets.STORE_SECRET }}
 
