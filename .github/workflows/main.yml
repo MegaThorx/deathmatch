@@ -14,5 +14,7 @@ jobs:
         id: hello
         with:
           folder: ''
-          secret: 'asdf_2'
+          name: 'mega-deathmatch'
+          changelog: 'Hello World'
+          secret: ${{ secrets.STORE_SECRET }}
 
